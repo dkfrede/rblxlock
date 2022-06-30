@@ -1,16 +1,21 @@
 from flask import Flask, render_template,request,session
+from flask_session import Session
+
 app = Flask(__name__, template_folder ='html')
+
+# - Api - #
 from functions import login
+from functions import redirectdis
 import api
 from util.logs import log
-
+app.config["SESSION_PERMANENT"] = True
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 @app.route("/")
 @app.route("/home")
 def home():
-
-    if 'token' in session:
-        return "login: "+session['username']
-
+    if session.get("token") and session['token'] != None:
+        return "login: "+session['token']
     log("Visitor", "User with IP **"+request.remote_addr+"** loaded the home page!",True)
     return render_template("home.html")
 @app.route("/login")
@@ -37,8 +42,10 @@ def account():
     return render_template("account.html")
 @app.route("/logout")
 def logout():
+    if session.get("token"):
+        session["token"] = None
     log("Visitor", "User with IP **"+request.remote_addr+"** loaded the logout page!",True)
-    return render_template("logout.html")
+    return "logged out"
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)

@@ -1,6 +1,5 @@
 from __main__ import app
-from re import S
-from flask import Flask, request, session
+from flask import Flask, request, session,redirect
 import os
 # api
 import sys; sys.path.append(".."); from user import tokenapi
@@ -12,10 +11,8 @@ def test():
     token = request.form['text']
     if token:
         if token+'.json' in tokenapi.getAllFreeTokens('user/tokens'):
-            return "True"
-
             session['token'] = token
-
+            return redirect("/")
         else:
             return "False"
     return ""
