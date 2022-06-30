@@ -1,5 +1,6 @@
 from __main__ import app
-from flask import Flask, request
+from re import S
+from flask import Flask, request, session
 import os
 # api
 import sys; sys.path.append(".."); from user import tokenapi
@@ -12,6 +13,9 @@ def test():
     if token:
         if token+'.json' in tokenapi.getAllFreeTokens('user/tokens'):
             return "True"
+
+            session['token'] = token
+
         else:
             return "False"
     return ""

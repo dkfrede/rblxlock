@@ -1,8 +1,15 @@
 <html>
     <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/home-index.css') }}" type="text/css">
         <title>rblxlock</title>
-        </head>
+    </head>
         <body>
-        <h1>he</h1>
-    </body>
-</html>  
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/upload">Upload</a></li>
+                <li><a href="/scripts">Scripts</a></li>
+                <li><a href="/download">Download</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </body>
+</html>

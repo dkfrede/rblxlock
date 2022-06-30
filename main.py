@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request,session
 app = Flask(__name__, template_folder ='html')
 from functions import login
 import api
@@ -7,6 +7,10 @@ from util.logs import log
 @app.route("/")
 @app.route("/home")
 def home():
+
+    if 'token' in session:
+        return "login: "+session['username']
+
     log("Visitor", "User with IP **"+request.remote_addr+"** loaded the home page!",True)
     return render_template("home.html")
 @app.route("/login")
