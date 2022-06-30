@@ -13,6 +13,11 @@
                 <li><a href="/login">Login</a></li>
                 <li><a href="/redirectdis">Discord</a></li>
                 <li><a href="/dashboard">Dashboard</a></li>
+
+                {% if logged %}
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/account">Account</a></li>
+                {% endif %}
             </ul>
         </body>
 </html>

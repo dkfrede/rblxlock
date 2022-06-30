@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/account-index.css') }}" type="text/css">
+        <title>rblxlock</title>
+    </head>
+        <body>
+            <div class="container">
+                <img src="{{ url_for('static',filename='background.png') }}">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+                <b class="ip">IP: {{ip}}</b>
+                <b class="token">Token: {{token}}</b>
+                <b class="admin">Admin: {{admin}}</b>
+            </div>
+        </body>
+</html>
