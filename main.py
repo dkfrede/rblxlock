@@ -1,19 +1,22 @@
 from flask import Flask, render_template
-from api import getScripts
 
 app = Flask(__name__, template_folder ='html')
+
+import api
 
 @app.route("/")
 @app.route("/home")
 def home():
-    print(getScripts("test"))
+    #print(api.getScripts("MINSEJETOKEN"))
+    #print(api.getScriptById("7",False))
+    #api.upload("""local hey = true \nprint("hey")""","MINSEJETOKEN1")
     return render_template("home.html")
 @app.route("/upload")
 def upload():
     return render_template("upload.html")
 @app.route("/download")
 def download():
-    return render_template("download.html")
+    return api.download()
 @app.route("/scripts")
 def scripts():
     return render_template("scripts.html")
