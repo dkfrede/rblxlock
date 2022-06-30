@@ -17,9 +17,9 @@ Trying to reverse-engineer your way to access the file, will give us logs, and w
 --]]"""
 
 
-def upload(data,token):
+def upload(data,token,path):
     data = Rblxwatermark+'\n'+ data
-    if token+'.json' in getAllFreeTokens():
+    if token+'.json' in getAllFreeTokens(path):
 
         dataJson = json.load(open("data.json"))
         if dataJson:

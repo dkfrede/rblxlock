@@ -6,6 +6,7 @@ app = Flask(__name__, template_folder ='html')
 # - Api - #
 from functions import login
 from functions import redirectdis
+from functions import upload
 import api
 from util.logs import log
 app.config["SESSION_PERMANENT"] = True
@@ -26,6 +27,9 @@ def login():
 def upload():
     log("Visitor", "User with IP **"+request.remote_addr+"** loaded the upload page!",True)
     return render_template("upload.html")
+@app.route("/scripts")
+def scripts():
+    return render_template("scripts.html",scripts=api.getScripts(session['token']),len=len(api.getScripts(session['token'])))
 @app.route("/dashboard")
 def dashboard():
     if session.get("token") and session['token'] != None:
