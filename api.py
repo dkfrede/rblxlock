@@ -19,8 +19,6 @@ Trying to reverse-engineer your way to access the file, will give us logs, and w
 
 def upload(data,token):
     data = Rblxwatermark+'\n'+ data
-    
-    print(getAllFreeTokens())
     if token+'.json' in getAllFreeTokens():
 
         dataJson = json.load(open("data.json"))

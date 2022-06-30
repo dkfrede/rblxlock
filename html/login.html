@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static',filename='styles/login-reset.css') }}" type="text/css">
+        <link rel="stylesheet" href= "{{ url_for('static',filename='styles/login-index.css') }}" type="text/css">
+	</head>
+	<body>
+        <div id="container2">
+            <form method="POST" id="form" action="/api/login">
+                <main>LOG IND</main>
+                <input name="text" placeholder="Token" id="input"></input>
+                <button id="submit" class="button button1" type="submit">Log Ind</button>
+            </form>
+		</div>
+	</body>
+</html>

@@ -1,7 +1,6 @@
 from flask import Flask, render_template,request
-
 app = Flask(__name__, template_folder ='html')
-
+from functions import login
 import api
 from util.logs import log
 
@@ -10,6 +9,10 @@ from util.logs import log
 def home():
     log("Visitor", "User with IP **"+request.remote_addr+"** loaded the home page!",True)
     return render_template("home.html")
+@app.route("/login")
+def login():
+    log("Visitor", "User with IP **"+request.remote_addr+"** loaded the login page!",True)
+    return render_template("login.html")
 @app.route("/upload")
 def upload():
     log("Visitor", "User with IP **"+request.remote_addr+"** loaded the upload page!",True)
