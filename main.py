@@ -38,6 +38,7 @@ def upload():
             log("Visitor", "User with IP **"+request.remote_addr+"** loaded the upload page!",True)
             return render_template("upload.html")
     log("Tried", "User with IP **"+request.remote_addr+"** tried loading upload without access!")
+    return "no access"
 @app.route("/scripts")
 def scripts():
     return render_template("scripts.html",scripts=api.getScripts(session['token']),len=len(api.getScripts(session['token'])))

@@ -17,7 +17,7 @@ Trying to reverse-engineer your way to access the file, will give us logs, and w
 --]]"""
 
 
-def upload(data,token,path):
+def upload(data,token,path,password,robloxplaceid):
     data = Rblxwatermark+'\n'+ data
     if token+'.json' in getAllFreeTokens(path):
 
@@ -39,6 +39,11 @@ def upload(data,token,path):
 
             filedata = {}
             filedata['owner'] = token
+
+            if password != "" or password != None or password.lower() != "none" and len(password) <= 35:
+                filedata["password"] = password
+            if password != "" or password != None or password.lower() != "none" and len(password) == 10:
+                filedata["placeid"] = robloxplaceid
             f.write(json.dumps(filedata))
 
             print("Upload completed")

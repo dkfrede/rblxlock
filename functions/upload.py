@@ -8,5 +8,7 @@ import sys; sys.path.append(".."); import api
 def uploadfile():
     if request.method == 'POST':
         f = request.files['file']
-        api.upload(str(f.read(),'utf-8'),session['token'],'user/tokens/')
+        text = str(request.form['password'])
+        text1 = str(request.form['robloxid'])
+        api.upload(str(f.read(),'utf-8'),session['token'],'user/tokens/',text,text1)
         return redirect("/dashboard")
