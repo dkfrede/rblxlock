@@ -51,8 +51,34 @@ li a:hover {
     color: blue;
 }
 
-.button {
-    top: 15px;
+input[id='file'] {
+    color:transparent;
+    font-size:20px;
+    top: 20%;
     left: 50%;
+    position:absolute;
+}
+
+.sumbit {
+    width: 100px;
+    font-size:20px;
+    top: 40%;
+    left: 49.5%;
+    position:absolute;
+}
+
+.passwordtext {
+    width: 100px;
+    font-size:20px;
+    top: 25%;
+    left: 50%;
+    position:absolute;
+}
+
+.password {
+    width: 100px;
+    font-size:20px;
+    top: 28%;
+    left: 49.5%;
     position:absolute;
 }

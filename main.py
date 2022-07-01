@@ -23,7 +23,7 @@ Session(app)
 @app.route("/home")
 def home():
     if session.get("token") and session['token'] != None:
-        if session.get("token")+'.json' in tokenapi.getAllFreeTokens():
+        if session.get("token")+'.json' in tokenapi.getAllFreeTokens('user/tokens/'):
             return render_template("home.html", logged=True, token=session['token'])
     log("Visitor", "User with IP **"+request.remote_addr+"** loaded the home page!",True)
     return render_template("home.html")
@@ -34,7 +34,7 @@ def login():
 @app.route("/upload")
 def upload():
     if session.get("token") and session['token'] != None:
-        if session.get("token")+'.json' in tokenapi.getAllFreeTokens():
+        if session.get("token")+'.json' in tokenapi.getAllFreeTokens('user/tokens/'):
             log("Visitor", "User with IP **"+request.remote_addr+"** loaded the upload page!",True)
             return render_template("upload.html")
     log("Tried", "User with IP **"+request.remote_addr+"** tried loading upload without access!")
@@ -44,12 +44,16 @@ def scripts():
 @app.route("/dashboard")
 def dashboard():
     if session.get("token") and session['token'] != None:
-        return render_template("dashboard.html")
+        if session.get("token")+'.json' in tokenapi.getAllFreeTokens('user/tokens/'):
+            return render_template("dashboard.html")
     return redirect("/login")
 @app.route("/download")
 def download():
-    log("Downloader", "User with IP **"+request.remote_addr+"** downloaded our resource!",True)
-    return api.download()
+    if session.get("token") and session['token'] != None:
+        if session.get("token")+'.json' in tokenapi.getAllFreeTokens('user/tokens/'):
+            log("Downloader", "User with IP **"+request.remote_addr+"** downloaded our resource!",True)
+            return api.download()
+    return "No access"
 @app.route("/account")
 def account():
     return render_template("account.html", token=session['token'], ip=request.remote_addr, admin=False)

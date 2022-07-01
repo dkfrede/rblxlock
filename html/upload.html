@@ -19,8 +19,12 @@
             
             </div>
             <form class="button" action = "/api/uploadfile" method = "POST" enctype = "multipart/form-data">
-                <input type = "file" name = "file" accept=".lua" />
-                <input type = "submit"/>
+                <input type = "file" id="file" name = "file" accept=".lua"/>
+
+                <label class="passwordtext" for="lname">Password:</label>
+                <input class="password" type="text" id="password" name="password"><br><br>
+
+                <input class="sumbit" type = "submit"/>
             </form> 
         </body>
 </html>
