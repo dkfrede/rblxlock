@@ -9,6 +9,7 @@ app = Flask(__name__, template_folder ='html')
 from functions import login
 from functions import redirectdis
 from functions import upload
+import getscript
 import api
 from util.logs import log
 from user import tokenapi

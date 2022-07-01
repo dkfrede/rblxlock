@@ -6,17 +6,12 @@
         <body>
             <div class="container">
                 <img src="{{ url_for('static',filename='background.png') }}">
-                    
-
-
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/upload">Upload</a></li>
                     <li><a href="/download">Download</a></li>
                     <li><a href="/scripts">Scripts</a></li>
                 </ul>
-
-            
             </div>
             <form class="button" action = "/api/uploadfile" method = "POST" enctype = "multipart/form-data">
                 <input type = "file" id="file" name = "file" accept=".lua"/>
