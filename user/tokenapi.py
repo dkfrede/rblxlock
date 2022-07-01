@@ -13,6 +13,14 @@ def getAllUsedTokens(path):
             if j['used'] == True:
                 tokens.append(i)
     return tokens
+def isTokenAnAdmin(token,path):
+    if path and token:
+        if token+'.json' in getAllTokens(path):
+            f = json.load(open(path+token+'.json'))
+            if f["admin"] != None:
+                if f["admin"] == True:
+                    return True
+    return False
 def getAllFreeTokens(path):
     tokens=getAllTokens(path)
     for i in getAllUsedTokens(path):

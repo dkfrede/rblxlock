@@ -57,7 +57,7 @@ def download():
     return "No access"
 @app.route("/account")
 def account():
-    return render_template("account.html", token=session['token'], ip=request.remote_addr, admin=False)
+    return render_template("account.html", token=session['token'], ip=request.remote_addr, admin=tokenapi.isTokenAnAdmin(session['token'],'user/tokens/'))
 @app.route("/logout")
 def logout():
     if session.get("token"):
