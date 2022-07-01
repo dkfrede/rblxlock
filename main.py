@@ -1,6 +1,8 @@
+# - Import flask - #
 from flask import Flask, render_template,request,session,redirect
 from flask_session import Session
 
+# - Make app - #
 app = Flask(__name__, template_folder ='html')
 
 # - Api - #
@@ -9,14 +11,20 @@ from functions import redirectdis
 from functions import upload
 import api
 from util.logs import log
+from user import tokenapi
+
+# - Setup session - #
 app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
+# - Final session setup - #
 Session(app)
+
 @app.route("/")
 @app.route("/home")
 def home():
     if session.get("token") and session['token'] != None:
-        return render_template("home.html", logged=True, token=session['token'])
+        if session.get("token")+'.json' in tokenapi.getAllFreeTokens():
+            return render_template("home.html", logged=True, token=session['token'])
     log("Visitor", "User with IP **"+request.remote_addr+"** loaded the home page!",True)
     return render_template("home.html")
 @app.route("/login")
@@ -25,8 +33,11 @@ def login():
     return render_template("login.html")
 @app.route("/upload")
 def upload():
-    log("Visitor", "User with IP **"+request.remote_addr+"** loaded the upload page!",True)
-    return render_template("upload.html")
+    if session.get("token") and session['token'] != None:
+        if session.get("token")+'.json' in tokenapi.getAllFreeTokens():
+            log("Visitor", "User with IP **"+request.remote_addr+"** loaded the upload page!",True)
+            return render_template("upload.html")
+    log("Tried", "User with IP **"+request.remote_addr+"** tried loading upload without access!")
 @app.route("/scripts")
 def scripts():
     return render_template("scripts.html",scripts=api.getScripts(session['token']),len=len(api.getScripts(session['token'])))
