@@ -1,4 +1,2 @@
 ## rblxlock
-RblxLock is a method of protecting your code from getting "stolen", lock your code on a server, and add checks to it. A place id or ip to access the code, or even an password. 
-
-We have an inbuild obfuscator that "helps you protect your code, but you should add a layer yourself"
+A bad version of a ip-lock, its mid-way and is not finished, and i will not finish it. Feel free to work on it, but a warning: its bad...
