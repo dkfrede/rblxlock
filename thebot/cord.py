@@ -20,4 +20,4 @@ def start():
             await message.channel.send(embed=embed)
         else:
             await message.channel.send("Not allowed to do this!")
-    bot.run('Nzc3MTUxNjYxNzYzOTg1NDE4.GvJzaY.EP8peeZ9Nmx_zEixU7TQ52s9VDP529UC-jwGtE')
+    bot.run('token')
